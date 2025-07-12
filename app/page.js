@@ -306,7 +306,8 @@ const Page = () => {
           num: '2',
           content: (
             <>
-              In main menu in <span className="font-bold">"Multiplayer"</span> paste this IP address:{' '}
+<span className="font-bold">&quot;Multiplayer&quot;</span>
+
               <span className="font-bold text-blue-400">lowkeysmp.xyz</span>
             </>
           ),
