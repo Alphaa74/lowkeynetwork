@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Poppins } from 'next/font/google'
 import { AiOutlineDiscord } from 'react-icons/ai'
 import Link from 'next/link'
+import Image from 'next/image'
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -70,7 +71,7 @@ const Page = () => {
       num: '2', 
       content: (
         <>
-          Go To "Multiplayer" and click "Add Server" and type in the IP:  
+          Go To &quot;Multiplayer&quot; and click &quot;Add Server&quot; and type in the IP:  
            <span className="font-bold text-white">lowkeysmp.xyz</span>. 
           After, join the server
         </>
@@ -123,10 +124,13 @@ const Page = () => {
                 repeatType: 'reverse'
               }}
             >
-              <img 
+              <Image 
                 src="/logo.png" 
                 alt="LowKey SMP Logo" 
+                width={112}
+                height={112}
                 className="w-full h-full object-contain drop-shadow-lg"
+                priority
               />
             </motion.div>
             <motion.span 
@@ -166,7 +170,13 @@ const Page = () => {
                   animate={{ opacity: 1, y: 0 }}
                   className="flex items-center space-x-2"
                 >
-                  <img src="/logo.png" alt="Logo" className="w-12 h-12 md:w-16 md:h-19" />
+                  <Image 
+                    src="/logo.png" 
+                    alt="Logo" 
+                    width={64}
+                    height={76}
+                    className="w-12 h-12 md:w-16 md:h-19"
+                  />
                 </motion.div>
 
                 <a 
@@ -211,9 +221,11 @@ const Page = () => {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.8, delay: 0.4 }}
                 >
-                  <img
+                  <Image
                     src="/character.png"
                     alt="LowKey SMP Character"
+                    width={500}
+                    height={500}
                     className="w-full max-w-lg mx-auto"
                   />
                 </motion.div>
@@ -288,9 +300,11 @@ const Page = () => {
                     >
                       <div className="p-6 text-center">
                         <div className="w-20 h-20 mx-auto -mt-12 bg-white rounded-full shadow-lg flex items-center justify-center mb-4 border-4 border-white">
-                          <img
+                          <Image
                             src={feature.image}
                             alt={feature.title}
+                            width={48}
+                            height={48}
                             className="w-12 h-12 object-contain"
                           />
                         </div>
