@@ -31,37 +31,30 @@ const Page = () => {
     {
       title: 'TPA and RTP',
       description: 'Convenient Teleportation.',
-      image: '/icons/tpa.png',
     },
     {
       title: 'Auction House',
       description: 'Sell/buy things from players.',
-      image: '/icons/auction.png',
     },
     {
       title: 'Admin Shop',
       description: 'Always in-stock with dynamic prices!',
-      image: '/icons/shop.png',
     },
     {
       title: 'Voting',
       description: 'Get rewards in a couple of clicks.',
-      image: '/icons/vote.png',
     },
     {
       title: 'Anti-cheat',
       description: 'Everyone is equal.',
-      image: '/icons/anticheat.png',
     },
     {
       title: 'Player Economy',
       description: 'Everyone is a part of the server economy.',
-      image: '/icons/economy.png',
     },
     {
       title: 'Modded SMP',
       description: 'This is not your average SMP.',
-      image: '/icons/modded.png',
     },
   ]
 
@@ -299,15 +292,6 @@ const Page = () => {
                       className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-100"
                     >
                       <div className="p-6 text-center">
-                        <div className="w-20 h-20 mx-auto -mt-12 bg-white rounded-full shadow-lg flex items-center justify-center mb-4 border-4 border-white">
-                          <Image
-                            src={feature.image}
-                            alt={feature.title}
-                            width={48}
-                            height={48}
-                            className="w-12 h-12 object-contain"
-                          />
-                        </div>
                         <h3 className="text-xl font-bold text-gray-800 mb-2">{feature.title}</h3>
                         <p className="text-gray-600">{feature.description}</p>
                       </div>
