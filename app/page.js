@@ -78,8 +78,12 @@ const Page = () => {
       description: 'Everyone is a part of the server economy.',
     },
     {
-      title: 'Modded SMP',
-      description: 'This is not your average SMP.',
+      title: 'No P2W',
+      description: 'No disadvantage if you dont have money.',
+    },
+    {
+      title: 'Cracked Too!',
+      description: 'Can Join without a Premium Minecraft account.',
     },
   ]
 
@@ -274,11 +278,7 @@ const Page = () => {
                   </h2>
                   <div className="w-24 h-1 bg-gradient-to-r from-yellow-400 to-yellow-600 mx-auto mb-8"></div>
                   <p className="text-lg md:text-xl text-gray-700 leading-relaxed max-w-4xl mx-auto">
-                    LowKey SMP is a modded server where you can experience Minecraft in a whole new way.
-                    Safeguard your creations by claiming chunks, ensuring your base remains secure from unwanted destruction.
-                    While claimed bases appear on an in-game map, be aware that they can still be
-                    destroyed by any type of explosions! Get ready for strategic gameplay and thrilling
-                    adventures on a server designed for both builders and combatants.
+                  An SMP where you can claim chunks so your base dosen't get destroyed; perfect for builders! Bases which are claimed can still be destroyed by any types of explosions. So, the best server ever!
                   </p>
                 </motion.div>
               </div>
