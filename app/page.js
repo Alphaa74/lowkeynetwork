@@ -89,19 +89,19 @@ const Page = () => {
 
   const steps = [
     { num: '1', content: 'Open Up Your Minecraft Java Edition in a 1.21.1 Profile' },
-    { 
-      num: '2', 
+    {
+      num: '2',
       content: (
         <>
-          Go To &quot;Multiplayer&quot; and click &quot;Add Server&quot; and type in the IP:  
-           <span className="font-bold text-white">lowkeysmp.xyz</span>. 
+          Go To &quot;Multiplayer&quot; and click &quot;Add Server&quot; and type in the IP:
+          <span className="font-bold text-white">lowkeysmp.xyz</span>.
           After, join the server
         </>
-      ) 
+      )
     },
-    { 
-      num: '3', 
-      content: 'Join The Server And Start Enjoying The LowKey Experience' 
+    {
+      num: '3',
+      content: 'Join The Server And Start Enjoying The LowKey Experience'
     },
   ]
 
@@ -146,16 +146,16 @@ const Page = () => {
                 repeatType: 'reverse'
               }}
             >
-              <Image 
-                src="/logo.png" 
-                alt="LowKey SMP Logo" 
+              <Image
+                src="/logo.png"
+                alt="LowKey SMP Logo"
                 width={112}
                 height={112}
                 className="w-full h-full object-contain drop-shadow-lg"
                 priority
               />
             </motion.div>
-            <motion.span 
+            <motion.span
               className="mt-6 text-white/80 font-medium tracking-wide text-lg"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -178,7 +178,7 @@ const Page = () => {
 
               <nav className="relative z-30 w-full px-6 md:px-12 lg:px-20 py-6 flex items-center justify-between">
                 <Link href="https://discord.gg/SDgrhQZa" target="_blank" rel="noopener noreferrer">
-                  <motion.div 
+                  <motion.div
                     whileHover={{ scale: 1.1, rotate: 8 }}
                     whileTap={{ scale: 0.95 }}
                     className="w-12 h-12 rounded-full bg-indigo-600 hover:bg-indigo-500 flex items-center justify-center text-white text-2xl shadow-lg transition-all duration-300"
@@ -192,20 +192,20 @@ const Page = () => {
                   animate={{ opacity: 1, y: 0 }}
                   className="flex items-center space-x-2"
                 >
-                  <Image 
-                    src="/logo.png" 
-                    alt="Logo" 
+                  <Image
+                    src="/logo.png"
+                    alt="Logo"
                     width={64}
                     height={76}
                     className="w-12 h-12 md:w-16 md:h-19"
                   />
                 </motion.div>
 
-  
+
               </nav>
 
               <div className="relative z-20 flex flex-col md:flex-row items-center justify-center h-[calc(100vh-100px)] px-6 md:px-12 lg:px-20 text-center md:text-left">
-                <motion.div 
+                <motion.div
                   className="max-w-2xl space-y-6"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -232,7 +232,7 @@ const Page = () => {
                   </div>
                 </motion.div>
 
-                <motion.div 
+                <motion.div
                   className="mt-12 md:mt-0 md:ml-12 lg:ml-24"
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1.9 }}
@@ -278,7 +278,7 @@ const Page = () => {
                   </h2>
                   <div className="w-24 h-1 bg-gradient-to-r from-yellow-400 to-yellow-600 mx-auto mb-8"></div>
                   <p className="text-lg md:text-xl text-gray-700 leading-relaxed max-w-4xl mx-auto">
-                  An SMP where you can claim chunks so your base doesn&apos;t get destroyed; perfect for builders! Bases which are claimed can still be destroyed by any types of explosions. So, the best server ever!
+                    An SMP where you can claim chunks so your base doesn&apos;t get destroyed; perfect for builders! Bases which are claimed can still be destroyed by any types of explosions. So, the best server ever!
                   </p>
                 </motion.div>
               </div>
@@ -349,15 +349,23 @@ const Page = () => {
                     </svg>
                   </button>
 
-                  {/* Single Slide */}
                   <div className="w-full aspect-video bg-gray-100 rounded-2xl overflow-hidden shadow-lg mx-auto">
-                    <div className="w-full h-full flex items-center justify-center bg-gray-200 overflow-hidden">
-                      <img 
-                        src={`/${currentSlide % 3 + 1}.png`} 
-                        alt={`Screenshot ${currentSlide + 1}`}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
+                    <AnimatePresence mode="wait">
+                      <motion.div
+                        key={currentSlide}
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 1.1 }}
+                        transition={{ duration: 0.3 }}
+                        className="w-full h-full"
+                      >
+                        <img
+                          src={`/${currentSlide + 1}.png`}
+                          alt={`Screenshot ${currentSlide + 1}`}
+                          className="w-full h-full object-cover"
+                        />
+                      </motion.div>
+                    </AnimatePresence>
                   </div>
 
                   {/* Right Arrow */}
@@ -378,9 +386,8 @@ const Page = () => {
                     <button
                       key={dot}
                       onClick={() => setCurrentSlide(dot)}
-                      className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                        currentSlide === dot ? 'bg-indigo-600 w-8' : 'bg-gray-300'
-                      }`}
+                      className={`w-3 h-3 rounded-full transition-all duration-300 ${currentSlide === dot ? 'bg-indigo-600 w-8' : 'bg-gray-300'
+                        }`}
                       aria-label={`Go to slide ${dot + 1}`}
                     />
                   ))}
