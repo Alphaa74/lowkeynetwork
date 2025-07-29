@@ -47,7 +47,7 @@ const Page = () => {
   }, [])
 
   const handleCopy = () => {
-    navigator.clipboard.writeText('lowkeysmp.xyz')
+    navigator.clipboard.writeText('play.lowkeysmp.xyz')
     setShowToast(true)
     setTimeout(() => setShowToast(false), 3000)
   }
