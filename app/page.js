@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Poppins } from 'next/font/google'
 import { AiOutlineDiscord } from 'react-icons/ai'
@@ -15,7 +15,32 @@ const poppins = Poppins({
 const Page = () => {
   const [loading, setLoading] = useState(true)
   const [showToast, setShowToast] = useState(false)
+  const [currentSlide, setCurrentSlide] = useState(0)
+  const sliderRef = useRef(null)
+  const totalSlides = 4 // Number of slides
 
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev === totalSlides - 1 ? 0 : prev + 1))
+  }
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev === 0 ? totalSlides - 1 : prev - 1))
+  }
+
+  // Auto-scroll to the current slide
+  useEffect(() => {
+    if (sliderRef.current) {
+      const slideWidth = sliderRef.current.children[0]?.offsetWidth + 24 // 24px is the gap (gap-6)
+      if (slideWidth) {
+        sliderRef.current.scrollTo({
+          left: currentSlide * slideWidth,
+          behavior: 'smooth'
+        })
+      }
+    }
+  }, [currentSlide])
+
+  // Loading timer
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 2000)
     return () => clearTimeout(timer)
@@ -59,7 +84,7 @@ const Page = () => {
   ]
 
   const steps = [
-    { num: '1', content: 'Open Up Your Launcher' },
+    { num: '1', content: 'Open Up Your Minecraft Java Edition in a 1.21.1 Profile' },
     { 
       num: '2', 
       content: (
@@ -172,12 +197,7 @@ const Page = () => {
                   />
                 </motion.div>
 
-                <a 
-                  href="#shop" 
-                  className="hidden md:block px-6 py-2 bg-white/10 backdrop-blur-sm rounded-full text-white font-medium hover:bg-white/20 transition-all duration-300 border border-white/20"
-                >
-                  Shop
-                </a>
+  
               </nav>
 
               <div className="relative z-20 flex flex-col md:flex-row items-center justify-center h-[calc(100vh-100px)] px-6 md:px-12 lg:px-20 text-center md:text-left">
@@ -211,7 +231,7 @@ const Page = () => {
                 <motion.div 
                   className="mt-12 md:mt-0 md:ml-12 lg:ml-24"
                   initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
+                  animate={{ opacity: 1, scale: 1.9 }}
                   transition={{ duration: 0.8, delay: 0.4 }}
                 >
                   <Image
@@ -296,6 +316,73 @@ const Page = () => {
                         <p className="text-gray-600">{feature.description}</p>
                       </div>
                     </motion.div>
+                  ))}
+                </div>
+              </div>
+            </section>
+
+            {/* Screenshots Slider */}
+            <section className="relative bg-white py-16 md:py-20 px-6 md:px-12 lg:px-24">
+              <div className="max-w-4xl mx-auto relative">
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                  className="text-center mb-12"
+                >
+                  <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 mb-6">
+                    Server Showcase
+                  </h2>
+                  <div className="w-24 h-1 bg-gradient-to-r from-yellow-400 to-yellow-600 mx-auto mb-8"></div>
+                </motion.div>
+
+                <div className="relative">
+                  {/* Left Arrow */}
+                  <button
+                    onClick={prevSlide}
+                    className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 md:-translate-x-16 z-10 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white shadow-lg flex items-center justify-center text-gray-700 hover:bg-gray-100 transition-all duration-300 hover:scale-110 focus:outline-none cursor-pointer"
+                    aria-label="Previous slide"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 md:h-6 md:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                    </svg>
+                  </button>
+
+                  {/* Single Slide */}
+                  <div className="w-full aspect-video bg-gray-100 rounded-2xl overflow-hidden shadow-lg mx-auto">
+                    <div className="w-full h-full flex items-center justify-center bg-gray-200 overflow-hidden">
+                      <img 
+                        src={`/${currentSlide % 3 + 1}.png`} 
+                        alt={`Screenshot ${currentSlide + 1}`}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Right Arrow */}
+                  <button
+                    onClick={nextSlide}
+                    className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 md:translate-x-16 z-10 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white shadow-lg flex items-center justify-center text-gray-700 hover:bg-gray-100 transition-all duration-300 hover:scale-110 focus:outline-none cursor-pointer"
+                    aria-label="Next slide"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 md:h-6 md:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </button>
+                </div>
+
+                {/* Dots Indicator */}
+                <div className="flex justify-center mt-8 space-x-2">
+                  {[0, 1, 2, 3].map((dot) => (
+                    <button
+                      key={dot}
+                      onClick={() => setCurrentSlide(dot)}
+                      className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                        currentSlide === dot ? 'bg-indigo-600 w-8' : 'bg-gray-300'
+                      }`}
+                      aria-label={`Go to slide ${dot + 1}`}
+                    />
                   ))}
                 </div>
               </div>
