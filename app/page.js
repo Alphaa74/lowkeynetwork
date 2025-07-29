@@ -278,7 +278,7 @@ const Page = () => {
                   </h2>
                   <div className="w-24 h-1 bg-gradient-to-r from-yellow-400 to-yellow-600 mx-auto mb-8"></div>
                   <p className="text-lg md:text-xl text-gray-700 leading-relaxed max-w-4xl mx-auto">
-                  An SMP where you can claim chunks so your base dosen't get destroyed; perfect for builders! Bases which are claimed can still be destroyed by any types of explosions. So, the best server ever!
+                  An SMP where you can claim chunks so your base doesn&apos;t get destroyed; perfect for builders! Bases which are claimed can still be destroyed by any types of explosions. So, the best server ever!
                   </p>
                 </motion.div>
               </div>
