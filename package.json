@@ -11,6 +11,8 @@
   "dependencies": {
     "framer-motion": "^12.23.3",
     "next": "15.3.5",
+    "puppeteer": "^24.15.0",
+    "rcon-client": "^4.2.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-icons": "^5.5.0",

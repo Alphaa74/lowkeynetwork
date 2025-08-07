@@ -17,7 +17,7 @@ const Page = () => {
   const [showToast, setShowToast] = useState(false)
   const [currentSlide, setCurrentSlide] = useState(0)
   const sliderRef = useRef(null)
-  const totalSlides = 4 // Number of slides
+  const totalSlides = 6 // Number of slides (1-6.png and 5-6.webp)
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev === totalSlides - 1 ? 0 : prev + 1))
@@ -173,7 +173,7 @@ const Page = () => {
           <div className="relative">
             {/* Hero Section */}
             <section className="relative h-screen w-full overflow-hidden">
-              <div className="absolute inset-0 bg-[url('/bg.jpg')] bg-cover bg-center transform scale-105" />
+              <div className="absolute inset-0 bg-[url('/bg.webp')] bg-cover bg-center transform scale-105" />
               <div className="absolute inset-0 bg-gradient-to-b from-blue-900/90 to-indigo-900/90" />
 
               <nav className="relative z-30 w-full px-6 md:px-12 lg:px-20 py-6 flex items-center justify-between">
@@ -219,7 +219,7 @@ const Page = () => {
                     <span className="inline-block ml-2">😎</span>
                   </h1>
                   <p className="text-xl text-white/90 leading-relaxed">
-                    The New Way To PVP – Competitive. Strategic. Addictive.
+                    The New Way To PVP : Competitive. Strategic. Addictive.
                   </p>
                   <div className="pt-4">
                     <button
@@ -278,7 +278,10 @@ const Page = () => {
                   </h2>
                   <div className="w-24 h-1 bg-gradient-to-r from-yellow-400 to-yellow-600 mx-auto mb-8"></div>
                   <p className="text-lg md:text-xl text-gray-700 leading-relaxed max-w-4xl mx-auto">
-                    An SMP where you can claim chunks so your base doesn&apos;t get destroyed; perfect for builders! Bases which are claimed can still be destroyed by any types of explosions. So, the best server ever!
+                  Looking for an SMP that respects builders but still feeds raiders?
+Welcome to LowKey SMP, where you can claim chunks to protect your base — but explosions are still fair game.
+
+This isnt your average peaceful SMP. Its survival, economy, and chaos—balanced perfectly.
                   </p>
                 </motion.div>
               </div>
@@ -360,7 +363,7 @@ const Page = () => {
                         className="w-full h-full"
                       >
                         <img
-                          src={`/${currentSlide + 1}.png`}
+                          src={`/${currentSlide + 1}${currentSlide >= 4 ? '.webp' : '.png'}`}
                           alt={`Screenshot ${currentSlide + 1}`}
                           className="w-full h-full object-cover"
                         />
@@ -382,7 +385,7 @@ const Page = () => {
 
                 {/* Dots Indicator */}
                 <div className="flex justify-center mt-8 space-x-2">
-                  {[0, 1, 2, 3].map((dot) => (
+                  {[0, 1, 2, 3, 4, 5].map((dot) => (
                     <button
                       key={dot}
                       onClick={() => setCurrentSlide(dot)}
@@ -449,7 +452,7 @@ const Page = () => {
                       </span>
                     </h3>
                     <p className="text-gray-400 max-w-2xl mx-auto">
-                      Experience Minecraft like never before — Modded, Competitive, and Strategic.
+                      Experience Minecraft like never before — Competitive and Strategic.
                     </p>
                   </motion.div>
 
