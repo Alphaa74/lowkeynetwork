@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   title: "LowKey SMP",
-  description: "The Best Modded SMP In The World!",
+  description: "The Best SMP In The World!",
   icons: {
     icon: '/favicon.ico',
   },

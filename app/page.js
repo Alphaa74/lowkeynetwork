@@ -208,50 +208,65 @@ const Page = () => {
 
               </nav>
 
-              <div className="relative z-20 flex flex-col md:flex-row items-center justify-center h-[calc(100vh-100px)] px-6 md:px-12 lg:px-20 text-center md:text-left">
-                <motion.div
-                  className="max-w-2xl space-y-6"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                >
-                  <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
-                    Start playing on <br />
-                    <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-yellow-200">
-                      LowKey SMP
-                    </span>
-                    <span className="inline-block ml-2">😎</span>
-                  </h1>
-                  <p className="text-xl text-white/90 leading-relaxed">
-                    The New Way To PVP : Competitive. Strategic. Addictive.
-                  </p>
-                  <div className="pt-4">
-                    <button
-                      onClick={handleCopy}
-                      className="relative group px-8 py-4 bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-400 hover:to-yellow-500 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 flex items-center mx-auto md:mx-0 space-x-2 cursor-pointer"
+              <div className="relative z-20 w-full min-h-[calc(100vh-120px)] flex items-center py-12">
+                <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 2xl:px-24">
+                  <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-16 xl:gap-24">
+                    {/* Left Column - Text Content */}
+                    <motion.div 
+                      className="w-full lg:w-5/12 xl:w-1/2"
+                      initial={{ opacity: 0, x: -30 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.8, delay: 0.2 }}
                     >
-                      <span>PLAY NOW</span>
-                      <span className="text-sm opacity-80">(Copy IP)</span>
-                    </button>
+                      <div className="text-center lg:text-left space-y-6 md:space-y-8">
+                        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight">
+                          Start playing on{' '}
+                          <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-yellow-200 block mt-2">
+                            LowKey SMP
+                          </span>
+                        </h1>
+                        <div className="flex items-center justify-center lg:justify-start space-x-2">
+                          <p className="text-xl sm:text-2xl text-gray-200">Part of The LowkeyNetwork</p>
+                          <span className="inline-block">😎</span>
+                        </div>
+                        <p className="text-lg sm:text-xl text-white/90 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                          The New Way To PVP: Competitive. Strategic. Addictive.
+                        </p>
+                        <div className="pt-2 lg:pt-4">
+                          <button
+                            onClick={handleCopy}
+                            className="relative group px-8 py-4 bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-400 hover:to-yellow-500 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 flex items-center mx-auto lg:mx-0 space-x-2 cursor-pointer"
+                          >
+                            <span>PLAY NOW</span>
+                            <span className="text-sm opacity-80">(Copy IP)</span>
+                          </button>
+                        </div>
+                      </div>
+                    </motion.div>
+                    
+                    {/* Right Column - Image */}
+                    <motion.div 
+                      className="w-full lg:w-7/12 xl:w-1/2 flex justify-center lg:justify-end"
+                      initial={{ opacity: 0, x: 30 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.8, delay: 0.4 }}
+                    >
+                      <div className="relative w-full max-w-xl xl:max-w-2xl">
+                        <Image
+                          src="/character.png"
+                          alt="Minecraft character"
+                          width={600}
+                          height={600}
+                          className="w-full h-auto object-contain"
+                          priority
+                        />
+                      </div>
+                    </motion.div>
                   </div>
-                </motion.div>
-
-                <motion.div
-                  className="mt-12 md:mt-0 md:ml-12 lg:ml-24"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1.9 }}
-                  transition={{ duration: 0.8, delay: 0.4 }}
-                >
-                  <Image
-                    src="/character.png"
-                    alt="LowKey SMP Character"
-                    width={500}
-                    height={500}
-                    className="w-full max-w-lg mx-auto"
-                  />
-                </motion.div>
+                </div>
               </div>
-
+              
+              {/* Wave Divider */}
               <div className="absolute bottom-0 left-0 w-full overflow-hidden">
                 <svg
                   className="w-full h-24 md:h-32"
