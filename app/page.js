@@ -58,6 +58,10 @@ const Page = () => {
       description: 'Convenient Teleportation.',
     },
     {
+      title: 'Custom Enchants',
+      description: 'Get to experience new minecraft content.',
+    },
+    {
       title: 'Auction House',
       description: 'Sell/buy things from players.',
     },
@@ -118,7 +122,7 @@ const Page = () => {
             className="fixed top-6 right-6 z-50 bg-white/90 backdrop-blur-sm text-gray-800 px-5 py-3 rounded-xl shadow-xl border border-gray-200 flex items-center space-x-3"
           >
             <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-            <span>Copied IP: <span className="font-semibold text-indigo-600">lowkeysmp.xyz</span></span>
+            <span>Copied IP: <span className="font-semibold text-indigo-600">play.lowkeysmp.xyz</span></span>
           </motion.div>
         )}
       </AnimatePresence>
