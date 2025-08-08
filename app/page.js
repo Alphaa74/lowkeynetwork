@@ -1,510 +1,230 @@
-'use client'
-import React, { useEffect, useState, useRef } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { Poppins } from 'next/font/google'
-import { AiOutlineDiscord } from 'react-icons/ai'
-import Link from 'next/link'
-import Image from 'next/image'
+'use client';
+import Link from 'next/link';
+import { motion } from 'framer-motion';
+import { AiOutlineDiscord } from 'react-icons/ai';
+import Image from 'next/image';
 
-const poppins = Poppins({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  display: 'swap',
-})
+export default function Home() {
+  const navLinks = [
+    { name: 'Home', href: '/' },
+    { name: 'SMP', href: '#smp' },
+  ];
 
-const Page = () => {
-  const [loading, setLoading] = useState(true)
-  const [showToast, setShowToast] = useState(false)
-  const [currentSlide, setCurrentSlide] = useState(0)
-  const sliderRef = useRef(null)
-  const totalSlides = 6 // Number of slides (1-6.png and 5-6.webp)
-
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev === totalSlides - 1 ? 0 : prev + 1))
-  }
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev === 0 ? totalSlides - 1 : prev - 1))
-  }
-
-  // Auto-scroll to the current slide
-  useEffect(() => {
-    if (sliderRef.current) {
-      const slideWidth = sliderRef.current.children[0]?.offsetWidth + 24 // 24px is the gap (gap-6)
-      if (slideWidth) {
-        sliderRef.current.scrollTo({
-          left: currentSlide * slideWidth,
-          behavior: 'smooth'
-        })
-      }
+  const serverFeatures = [
+    {
+      id: 'smp',
+      title: 'Survival Multiplayer',
+      description: 'Experience the ultimate survival experience with our custom SMP world. Team up with friends, build your base, and thrive in a persistent world with custom features and an active community.',
+      icon: '🌲',
+      cta: 'Join SMP',
+      ctaLink: '/smp',
+      image: '/smp-preview.jpg',
+      features: [
+        'Custom world generation',
+        'Player-run economy',
+        'Weekly events',
+        'Community builds',
+        'Custom items and recipes'
+      ]
     }
-  }, [currentSlide])
-
-  // Loading timer
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 2000)
-    return () => clearTimeout(timer)
-  }, [])
-
-  const handleCopy = () => {
-    navigator.clipboard.writeText('play.lowkeysmp.xyz')
-    setShowToast(true)
-    setTimeout(() => setShowToast(false), 3000)
-  }
-
-  const features = [
-    {
-      title: 'TPA and RTP',
-      description: 'Convenient Teleportation.',
-    },
-    {
-      title: 'Custom Enchants',
-      description: 'Get to experience new minecraft content.',
-    },
-    {
-      title: 'Auction House',
-      description: 'Sell/buy things from players.',
-    },
-    {
-      title: 'Admin Shop',
-      description: 'Always in-stock with dynamic prices!',
-    },
-    {
-      title: 'Voting',
-      description: 'Get rewards in a couple of clicks.',
-    },
-    {
-      title: 'Anti-cheat',
-      description: 'Everyone is equal.',
-    },
-    {
-      title: 'Player Economy',
-      description: 'Everyone is a part of the server economy.',
-    },
-    {
-      title: 'No P2W',
-      description: 'No disadvantage if you dont have money.',
-    },
-    {
-      title: 'Cracked Too!',
-      description: 'Can Join without a Premium Minecraft account.',
-    },
-  ]
-
-  const steps = [
-    { num: '1', content: 'Open Up Your Minecraft Java Edition in a 1.21.1 Profile' },
-    {
-      num: '2',
-      content: (
-        <>
-          Go To &quot;Multiplayer&quot; and click &quot;Add Server&quot; and type in the IP:
-          <span className="font-bold text-white">lowkeysmp.xyz</span>.
-          After, join the server
-        </>
-      )
-    },
-    {
-      num: '3',
-      content: 'Join The Server And Start Enjoying The LowKey Experience'
-    },
-  ]
+  ];
 
   return (
-    <div className={`${poppins.className} bg-gradient-to-br from-gray-900 to-gray-800 text-white min-h-screen`}>
-      {/* Toast Notification */}
-      <AnimatePresence>
-        {showToast && (
-          <motion.div
-            initial={{ opacity: 0, y: -20, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -20, scale: 0.95 }}
-            transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            className="fixed top-6 right-6 z-50 bg-white/90 backdrop-blur-sm text-gray-800 px-5 py-3 rounded-xl shadow-xl border border-gray-200 flex items-center space-x-3"
-          >
-            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-            <span>Copied IP: <span className="font-semibold text-indigo-600">play.lowkeysmp.xyz</span></span>
-          </motion.div>
-        )}
-      </AnimatePresence>
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+      {/* Navigation */}
+      <nav className="fixed w-full z-50 bg-gray-900/80 backdrop-blur-md border-b border-gray-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            <div className="flex items-center">
+              <div className="flex-shrink-0">
+                <Image
+                  src="/logo.png"
+                  alt="LowkeyNetwork Logo"
+                  width={40}
+                  height={40}
+                  className="rounded-full"
+                />
+              </div>
+              <div className="hidden md:block">
+                <div className="ml-10 flex items-baseline space-x-8">
+                  {navLinks.map((link) => (
+                    <Link
+                      key={link.name}
+                      href={link.href}
+                      className="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white transition-colors"
+                    >
+                      {link.name}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
+            <div className="flex items-center
+            ">
+              <a
+                href="https://discord.gg/SDgrhQZa"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-full text-gray-400 hover:text-white hover:bg-gray-800 transition-colors"
+              >
+                <AiOutlineDiscord className="h-6 w-6" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </nav>
 
-      {/* Loading Screen */}
-      <AnimatePresence>
-        {loading && (
-          <motion.div
-            className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-gradient-to-br from-gray-900 to-gray-800"
-            initial={{ opacity: 1 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.6, ease: 'easeInOut' }}
-          >
-            <motion.div
-              className="relative w-28 h-28"
-              animate={{
-                scale: [1, 1.1, 1],
-                rotate: [0, 10, -10, 0],
-              }}
-              transition={{
-                duration: 2,
-                ease: 'easeInOut',
-                repeat: Infinity,
-                repeatType: 'reverse'
-              }}
-            >
-              <Image
-                src="/logo.png"
-                alt="LowKey SMP Logo"
-                width={112}
-                height={112}
-                className="w-full h-full object-contain drop-shadow-lg"
-                priority
-              />
-            </motion.div>
-            <motion.span
-              className="mt-6 text-white/80 font-medium tracking-wide text-lg"
-              initial={{ opacity: 0, y: 10 }}
+      {/* Hero Section */}
+      <main className="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center">
+            <motion.h1 
+              className="text-4xl tracking-tight font-extrabold text-white sm:text-5xl md:text-6xl"
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
+              transition={{ duration: 0.8 }}
             >
-              Loading...
-            </motion.span>
-          </motion.div>
-        )}
-      </AnimatePresence>
+              <span className="block">Welcome to</span>
+              <span className="block text-indigo-400">LowkeyNetwork</span>
+            </motion.h1>
+            <motion.p 
+              className="mt-3 max-w-md mx-auto text-base text-gray-300 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              A growing Minecraft network with amazing features and an awesome community.
+            </motion.p>
+            <motion.div 
+              className="mt-10 flex flex-col sm:flex-row justify-center gap-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
+              <Link
+                href="/smp"
+                className="w-full sm:w-auto flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10 transition-colors"
+              >
+                Join SMP
+              </Link>
+            </motion.div>
+          </div>
 
-      {/* Main Content */}
-      <AnimatePresence>
-        {!loading && (
-          <div className="relative">
-            {/* Hero Section */}
-            <section className="relative h-screen w-full overflow-hidden">
-              <div className="absolute inset-0 bg-[url('/bg.webp')] bg-cover bg-center transform scale-105" />
-              <div className="absolute inset-0 bg-gradient-to-b from-blue-900/90 to-indigo-900/90" />
+          {/* Server Features Section */}
+          <div className="mt-20 space-y-32">
+            {serverFeatures.map((feature, index) => (
+              <section 
+                key={feature.id}
+                id={feature.id}
+                className={`scroll-mt-20 ${index % 2 === 0 ? 'bg-gray-900/50' : ''} py-16`}
+              >
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                  <div className={`lg:flex ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-12`}>
+                    <div className="lg:w-1/2 mb-10 lg:mb-0">
+                      <motion.div
+                        initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                        className="relative h-64 md:h-80 lg:h-96 rounded-xl overflow-hidden border-2 border-gray-700"
+                      >
+                        <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/20 to-purple-500/20"></div>
+                        <div className="absolute inset-0 flex items-center justify-center text-6xl">
+                          {feature.icon}
+                        </div>
+                      </motion.div>
+                    </div>
+                    <div className="lg:w-1/2">
+                      <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 0.2 }}
+                      >
+                        <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+                          {feature.title}
+                        </h2>
+                        <p className="text-lg text-gray-300 mb-6">
+                          {feature.description}
+                        </p>
+                        <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-8">
+                          {feature.features.map((item, i) => (
+                            <li key={i} className="flex items-center text-gray-300">
+                              <svg className="w-5 h-5 text-green-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                              </svg>
+                              {item}
+                            </li>
+                          ))}
+                        </ul>
+                        <Link
+                          href={feature.ctaLink}
+                          className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 transition-colors"
+                        >
+                          {feature.cta}
+                          <svg className="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                          </svg>
+                        </Link>
+                      </motion.div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            ))}
+          </div>
 
-              <nav className="relative z-30 w-full px-6 md:px-12 lg:px-20 py-6 flex items-center justify-between">
-                <Link href="https://discord.gg/SDgrhQZa" target="_blank" rel="noopener noreferrer">
-                  <motion.div
-                    whileHover={{ scale: 1.1, rotate: 8 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="w-12 h-12 rounded-full bg-indigo-600 hover:bg-indigo-500 flex items-center justify-center text-white text-2xl shadow-lg transition-all duration-300"
-                  >
-                    <AiOutlineDiscord />
-                  </motion.div>
-                </Link>
-
-                <motion.div
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="flex items-center space-x-2"
-                >
+          {/* About Section */}
+          <div id="about" className="mt-32">
+            <div className="lg:grid lg:grid-cols-2 lg:gap-8 items-center">
+              <div>
+                <h2 className="text-3xl font-extrabold text-white mb-6">
+                  About LowkeyNetwork
+                </h2>
+                <p className="text-lg text-gray-300 mb-6">
+                  We're a passionate team of Minecraft enthusiasts dedicated to creating the best gaming experience for our community. Our SMP server is just the beginning of what we have planned for the LowkeyNetwork.
+                </p>
+                <p className="text-lg text-gray-300">
+                  Join us today and be part of something special as we grow and expand our network with new and exciting features!
+                </p>
+              </div>
+              <div className="mt-12 lg:mt-0">
+                <div className="relative h-64 lg:h-96">
                   <Image
                     src="/logo.png"
-                    alt="Logo"
-                    width={64}
-                    height={76}
-                    className="w-12 h-12 md:w-16 md:h-19"
+                    alt="LowkeyNetwork"
+                    fill
+                    className="rounded-lg object-contain"
                   />
-                </motion.div>
-
-
-              </nav>
-
-              <div className="relative z-20 w-full min-h-[calc(100vh-120px)] flex items-center py-12">
-                <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 2xl:px-24">
-                  <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-16 xl:gap-24">
-                    {/* Left Column - Text Content */}
-                    <motion.div 
-                      className="w-full lg:w-5/12 xl:w-1/2"
-                      initial={{ opacity: 0, x: -30 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.8, delay: 0.2 }}
-                    >
-                      <div className="text-center lg:text-left space-y-6 md:space-y-8">
-                        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight">
-                          Start playing on{' '}
-                          <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-yellow-200 block mt-2">
-                            LowKey SMP
-                          </span>
-                        </h1>
-                        <div className="flex items-center justify-center lg:justify-start space-x-2">
-                          <p className="text-xl sm:text-2xl text-gray-200">Part of The LowkeyNetwork</p>
-                          <span className="inline-block">😎</span>
-                        </div>
-                        <p className="text-lg sm:text-xl text-white/90 leading-relaxed max-w-2xl mx-auto lg:mx-0">
-                          The New Way To PVP: Competitive. Strategic. Addictive.
-                        </p>
-                        <div className="pt-2 lg:pt-4">
-                          <button
-                            onClick={handleCopy}
-                            className="relative group px-8 py-4 bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-400 hover:to-yellow-500 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 flex items-center mx-auto lg:mx-0 space-x-2 cursor-pointer"
-                          >
-                            <span>PLAY NOW</span>
-                            <span className="text-sm opacity-80">(Copy IP)</span>
-                          </button>
-                        </div>
-                      </div>
-                    </motion.div>
-                    
-                    {/* Right Column - Image */}
-                    <motion.div 
-                      className="w-full lg:w-7/12 xl:w-1/2 flex justify-center lg:justify-end"
-                      initial={{ opacity: 0, x: 30 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.8, delay: 0.4 }}
-                    >
-                      <div className="relative w-full max-w-xl xl:max-w-2xl">
-                        <Image
-                          src="/character.png"
-                          alt="Minecraft character"
-                          width={600}
-                          height={600}
-                          className="w-full h-auto object-contain"
-                          priority
-                        />
-                      </div>
-                    </motion.div>
-                  </div>
                 </div>
               </div>
-              
-              {/* Wave Divider */}
-              <div className="absolute bottom-0 left-0 w-full overflow-hidden">
-                <svg
-                  className="w-full h-24 md:h-32"
-                  viewBox="0 0 1440 150"
-                  preserveAspectRatio="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fill="#ffffff"
-                    d="M0,96L60,90.7C120,85,240,75,360,69.3C480,64,600,64,720,74.7C840,85,960,107,1080,106.7C1200,107,1320,85,1380,74.7L1440,64V160H1380C1320,160,1200,160,1080,160C960,160,840,160,720,160C600,160,480,160,360,160C240,160,120,160,60,160H0Z"
-                  />
-                </svg>
-              </div>
-            </section>
-
-            {/* What is LowKey SMP? */}
-            <section className="relative bg-white py-20 md:py-28 px-6 md:px-12 lg:px-24">
-              <div className="max-w-5xl mx-auto">
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6 }}
-                  className="text-center mb-16"
-                >
-                  <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 mb-6">
-                    What is LowKey SMP?
-                  </h2>
-                  <div className="w-24 h-1 bg-gradient-to-r from-yellow-400 to-yellow-600 mx-auto mb-8"></div>
-                  <p className="text-lg md:text-xl text-gray-700 leading-relaxed max-w-4xl mx-auto">
-                  Looking for an SMP that respects builders but still feeds raiders?
-Welcome to LowKey SMP, where you can claim chunks to protect your base — but explosions are still fair game.
-
-This isnt your average peaceful SMP. Its survival, economy, and chaos—balanced perfectly.
-                  </p>
-                </motion.div>
-              </div>
-            </section>
-
-            {/* Server Features */}
-            <section className="relative bg-gray-50 py-20 md:py-28 px-6 md:px-12 lg:px-24">
-              <div className="max-w-6xl mx-auto">
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6 }}
-                  className="text-center mb-16"
-                >
-                  <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 mb-6">
-                    Server Features
-                  </h2>
-                  <div className="w-24 h-1 bg-gradient-to-r from-yellow-400 to-yellow-600 mx-auto mb-8"></div>
-                </motion.div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {features.map((feature, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, y: 30 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.4, delay: index * 0.1 }}
-                      whileHover={{ y: -5 }}
-                      className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-100"
-                    >
-                      <div className="p-6 text-center">
-                        <h3 className="text-xl font-bold text-gray-800 mb-2">{feature.title}</h3>
-                        <p className="text-gray-600">{feature.description}</p>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-            </section>
-
-            {/* Screenshots Slider */}
-            <section className="relative bg-white py-16 md:py-20 px-6 md:px-12 lg:px-24">
-              <div className="max-w-4xl mx-auto relative">
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6 }}
-                  className="text-center mb-12"
-                >
-                  <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 mb-6">
-                    Server Showcase
-                  </h2>
-                  <div className="w-24 h-1 bg-gradient-to-r from-yellow-400 to-yellow-600 mx-auto mb-8"></div>
-                </motion.div>
-
-                <div className="relative">
-                  {/* Left Arrow */}
-                  <button
-                    onClick={prevSlide}
-                    className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 md:-translate-x-16 z-10 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white shadow-lg flex items-center justify-center text-gray-700 hover:bg-gray-100 transition-all duration-300 hover:scale-110 focus:outline-none cursor-pointer"
-                    aria-label="Previous slide"
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 md:h-6 md:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                    </svg>
-                  </button>
-
-                  <div className="w-full aspect-video bg-gray-100 rounded-2xl overflow-hidden shadow-lg mx-auto">
-                    <AnimatePresence mode="wait">
-                      <motion.div
-                        key={currentSlide}
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 1.1 }}
-                        transition={{ duration: 0.3 }}
-                        className="w-full h-full"
-                      >
-                        <img
-                          src={`/${currentSlide + 1}${currentSlide >= 4 ? '.webp' : '.png'}`}
-                          alt={`Screenshot ${currentSlide + 1}`}
-                          className="w-full h-full object-cover"
-                        />
-                      </motion.div>
-                    </AnimatePresence>
-                  </div>
-
-                  {/* Right Arrow */}
-                  <button
-                    onClick={nextSlide}
-                    className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 md:translate-x-16 z-10 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white shadow-lg flex items-center justify-center text-gray-700 hover:bg-gray-100 transition-all duration-300 hover:scale-110 focus:outline-none cursor-pointer"
-                    aria-label="Next slide"
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 md:h-6 md:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </button>
-                </div>
-
-                {/* Dots Indicator */}
-                <div className="flex justify-center mt-8 space-x-2">
-                  {[0, 1, 2, 3, 4, 5].map((dot) => (
-                    <button
-                      key={dot}
-                      onClick={() => setCurrentSlide(dot)}
-                      className={`w-3 h-3 rounded-full transition-all duration-300 ${currentSlide === dot ? 'bg-indigo-600 w-8' : 'bg-gray-300'
-                        }`}
-                      aria-label={`Go to slide ${dot + 1}`}
-                    />
-                  ))}
-                </div>
-              </div>
-            </section>
-
-            {/* How to Join */}
-            <section className="relative bg-gradient-to-br from-blue-600 to-indigo-700 py-20 md:py-28 px-6 md:px-12 lg:px-24">
-              <div className="max-w-4xl mx-auto">
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6 }}
-                  className="text-center mb-16"
-                >
-                  <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-                    How to Join
-                  </h2>
-                  <div className="w-24 h-1 bg-gradient-to-r from-yellow-400 to-yellow-600 mx-auto mb-8"></div>
-                </motion.div>
-
-                <div className="space-y-6">
-                  {steps.map((step, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: index * 0.15 }}
-                      className="relative bg-white/10 backdrop-blur-sm rounded-xl p-6 pl-16 border border-white/10 hover:bg-white/20 transition-all duration-300 "
-                    >
-                      <div className="absolute left-6 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-yellow-400 text-gray-900 font-bold rounded-full flex items-center justify-center text-lg ">
-                        {step.num}
-                      </div>
-                      <p className="text-white text-lg font-medium ml-5">
-                        {step.content}
-                      </p>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-            </section>
-
-            {/* Footer */}
-            <footer className="bg-gray-900 text-white py-16 px-6 md:px-12 lg:px-24">
-              <div className="max-w-6xl mx-auto">
-                <div className="text-center">
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="mb-8"
-                  >
-                    <h3 className="text-2xl font-bold mb-4">
-                      <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-yellow-600">
-                        LowKey SMP
-                      </span>
-                    </h3>
-                    <p className="text-gray-400 max-w-2xl mx-auto">
-                      Experience Minecraft like never before — Competitive and Strategic.
-                    </p>
-                  </motion.div>
-
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.2 }}
-                    className="mb-8"
-                  >
-                    <Link
-                      href="https://discord.gg/SDgrhQZa"
-                      target="_blank"
-                      className="inline-flex items-center justify-center gap-3 bg-indigo-600 hover:bg-indigo-700 px-6 py-3 rounded-full font-medium transition-colors duration-300"
-                    >
-                      <AiOutlineDiscord className="text-xl" />
-                      <span>Join our Discord</span>
-                    </Link>
-                  </motion.div>
-
-                  <div className="border-t border-gray-800 pt-8 mt-12">
-                    <p className="text-sm text-gray-500">
-                      &copy; {new Date().getFullYear()} LowKey SMP. All rights reserved.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </footer>
+            </div>
           </div>
-        )}
-      </AnimatePresence>
+        </div>
+      </main>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 border-t border-gray-800 mt-24">
+        <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="flex items-center space-x-4">
+              <Image
+                src="/logo.png"
+                alt="LowkeyNetwork Logo"
+                width={40}
+                height={40}
+                className="rounded-full"
+              />
+              <span className="text-xl font-bold text-white">LowkeyNetwork</span>
+            </div>
+            <div className="mt-4 md:mt-0">
+              <p className="text-gray-400 text-sm">
+                &copy; {new Date().getFullYear()} LowkeyNetwork. All rights reserved.
+              </p>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   )
 }
-
-export default Page
