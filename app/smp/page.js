@@ -22,7 +22,6 @@ const Page = () => {
   const navLinks = [
     { name: 'Home', href: '/' },
     { name: 'SMP', href: '/smp' },
-    { name: 'About', href: '#about' },
   ];
 
   const nextSlide = () => {

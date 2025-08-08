@@ -15,7 +15,7 @@ export default function Home() {
       id: 'smp',
       title: 'Survival Multiplayer',
       description: 'Experience the ultimate survival experience with our custom SMP world. Team up with friends, build your base, and thrive in a persistent world with custom features and an active community.',
-      icon: '🌲',
+      icon: '/survival.png',
       cta: 'Join SMP',
       ctaLink: '/smp',
       image: '/smp-preview.jpg',
@@ -129,8 +129,16 @@ export default function Home() {
                         className="relative h-64 md:h-80 lg:h-96 rounded-xl overflow-hidden border-2 border-gray-700"
                       >
                         <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/20 to-purple-500/20"></div>
-                        <div className="absolute inset-0 flex items-center justify-center text-6xl">
-                          {feature.icon}
+                        <div className="absolute inset-0 flex items-center justify-center p-8">
+                          <div className="relative w-full h-full">
+                            <Image
+                              src={feature.icon}
+                              alt={feature.title}
+                              fill
+                              className="object-contain"
+                              sizes="(max-width: 768px) 100vw, 50vw"
+                            />
+                          </div>
                         </div>
                       </motion.div>
                     </div>
@@ -219,7 +227,7 @@ export default function Home() {
             </div>
             <div className="mt-4 md:mt-0">
               <p className="text-gray-400 text-sm">
-                &copy; {new Date().getFullYear()} LowkeyNetwork. All rights reserved.
+                &copy; {new Date().getFullYear()} LowkeyNetwork. All rights reserved. BY-NC-ND
               </p>
             </div>
           </div>
