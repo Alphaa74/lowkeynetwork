@@ -182,7 +182,7 @@ export default function Home() {
                   About LowkeyNetwork
                 </h2>
                 <p className="text-lg text-gray-300 mb-6">
-                  We're a passionate team of Minecraft enthusiasts dedicated to creating the best gaming experience for our community. Our SMP server is just the beginning of what we have planned for the LowkeyNetwork.
+                  We&apos;re a passionate team of Minecraft enthusiasts dedicated to creating the best gaming experience for our community. Our SMP server is just the beginning of what we have planned for the LowkeyNetwork.
                 </p>
                 <p className="text-lg text-gray-300">
                   Join us today and be part of something special as we grow and expand our network with new and exciting features!

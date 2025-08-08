@@ -313,7 +313,7 @@ const Page = () => {
                   <p className="text-lg md:text-xl text-gray-300 leading-relaxed max-w-4xl mx-auto">
                     Looking for an SMP that respects builders but still feeds raiders?
                     Welcome to LowKey SMP, where you can claim chunks to protect your base — but explosions are still fair game.
-                    This isn't your average peaceful SMP. It's survival, economy, and chaos—balanced perfectly.
+                    This isn&apos;t your average peaceful SMP. It&apos;s survival, economy, and chaos—balanced perfectly.
                   </p>
                 </motion.div>
               </div>
@@ -402,11 +402,16 @@ const Page = () => {
                         transition={{ duration: 0.3 }}
                         className="w-full h-full"
                       >
-                        <img
-                          src={`/${currentSlide + 1}${currentSlide >= 4 ? '.webp' : '.png'}`}
-                          alt={`Screenshot ${currentSlide + 1}`}
-                          className="w-full h-full object-cover"
-                        />
+                        <div className="relative w-full h-full">
+                          <Image
+                            src={`/${currentSlide + 1}${currentSlide >= 4 ? '.webp' : '.png'}`}
+                            alt={`Screenshot ${currentSlide + 1}`}
+                            fill
+                            className="object-cover"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 80vw"
+                            priority={currentSlide === 0}
+                          />
+                        </div>
                       </motion.div>
                     </AnimatePresence>
                   </div>
