@@ -150,7 +150,7 @@ const Page = () => {
             </div>
             <div className="flex items-center">
               <a
-                href="https://discord.gg/SDgrhQZa"
+                href="https://discord.gg/5wPTwR3c"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 rounded-full text-gray-400 hover:text-white hover:bg-gray-800 transition-colors"
