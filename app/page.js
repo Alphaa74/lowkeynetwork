@@ -236,3 +236,40 @@ export default function Home() {
     </div>
   )
 }
+<!-- ====== Team Section: Owners & Staff ====== -->
+<section id="team" class="py-10 bg-gray-900 text-white">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="text-3xl font-bold text-center mb-8">Our Team</h2>
+
+    <!-- Owners -->
+    <h3 class="text-2xl font-semibold mb-4">👑 Owners</h3>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-10">
+      
+      <!-- Owner 1 -->
+      <div class="bg-gray-800 p-4 rounded-2xl text-center shadow-lg">
+        <img src="https://minotar.net/armor/body/Alpha74_/200.png" 
+             alt="Alpha74_" 
+             class="mx-auto mb-3 rounded-lg shadow-md">
+        <h4 class="text-xl font-bold">Alpha74_</h4>
+        <p class="text-gray-400">Owner</p>
+      </div>
+
+      <!-- Owner 2 -->
+      <div class="bg-gray-800 p-4 rounded-2xl text-center shadow-lg">
+        <img src="https://minotar.net/armor/body/Itz_tanush_/200.png" 
+             alt="Itz_tanush_" 
+             class="mx-auto mb-3 rounded-lg shadow-md">
+        <h4 class="text-xl font-bold">Itz_tanush_</h4>
+        <p class="text-gray-400">Owner</p>
+      </div>
+    </div>
+
+    <!-- Staff -->
+    <h3 class="text-2xl font-semibold mb-4">🛠 Staff</h3>
+    <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+      <li class="bg-gray-800 p-4 rounded-2xl text-center shadow-md">reece</li>
+      <li class="bg-gray-800 p-4 rounded-2xl text-center shadow-md">ser</li>
+      <li class="bg-gray-800 p-4 rounded-2xl text-center shadow-md">JaySmethers</li>
+    </ul>
+  </div>
+</section>
