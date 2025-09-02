@@ -62,7 +62,7 @@ export default function Home() {
             <div className="flex items-center
             ">
               <a
-                href="https://discord.gg/SDgrhQZa"
+                href="https://discord.gg/5wPTwR3c"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 rounded-full text-gray-400 hover:text-white hover:bg-gray-800 transition-colors"
@@ -210,8 +210,41 @@ export default function Home() {
           </div>
         </div>
       </main>
-
-      {/* Footer */}
+                      {/* Shop Section */}
+          <div id="shop" className="mt-32">
+            <div className="text-center max-w-3xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+                Support the Network
+              </h2>
+              <p className="text-lg text-gray-300 mb-8">
+                Help keep the server running and unlock exclusive perks by visiting our official shop.
+              </p>
+              <a
+                href="https://lowkeysmp.craftingstore.net/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 transition-colors"
+              >
+                Visit Shop
+                <svg
+                  className="ml-2 -mr-1 w-5 h-5"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M10.293 5.293a1 1 0 011.414 0l4 4a1 
+                       1 0 010 1.414l-4 4a1 1 0 
+                       01-1.414-1.414L12.586 11H5a1 
+                       1 0 110-2h7.586l-2.293-2.293a1 
+                       1 0 010-1.414z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
       <footer className="bg-gray-900 border-t border-gray-800 mt-24">
         <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
